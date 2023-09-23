@@ -1,7 +1,7 @@
 # testWebAutomato
 The script convert_table.py in src uses OpenAI API.
 This script takes a template table and a source data table (A or B) and a target table name in the format:
-convert_table.py —-source <source CSV> —-template template CSV —-target target CSV
+convert_table.py —-source "source CSV" —-template "template CSV" —-target "target CSV"
 
 As the output, the user receives the target table (for exmple, target.csv in data) in the Template format (columns, value formats) but with values from the source table.
 
