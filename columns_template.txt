@@ -1,5 +1,0 @@
-Date
-EmployeeName
-Plan
-PolicyNumber
-Premium
