@@ -1,0 +1,26 @@
+[{
+  "template_column": "Date",
+  "template_data_format": "DD-MM-YYYY",
+  "source_column": "PolicyDate",
+  "source_data_format": "YYYY-MM-DD"
+},{
+  "template_column": "EmployeeName",
+  "template_data_format": "string",
+  "source_column": "Employee_Name",
+  "source_data_format": "string"
+},{
+  "template_column": "Plan",
+  "template_data_format": "string",
+  "source_column": "Plan_Name",
+  "source_data_format": "string"
+},{
+  "template_column": "PolicyNumber",
+  "template_data_format": "string",
+  "source_column": "PolicyID",
+  "source_data_format": "string"
+},{
+  "template_column": "Premium",
+  "template_data_format": "integer",
+  "source_column": "Cost",
+  "source_data_format": "integer"
+}]
