@@ -1,0 +1,34 @@
+{
+"mappings": [
+    {
+        "template_column": "Date",
+        "template_data_format": "DD-MM-YYYY",
+        "source_column": "Date_of_Policy",
+        "source_data_format": "MM/DD/YYYY"
+    },
+    {
+        "template_column": "EmployeeName",
+        "template_data_format": "String",
+        "source_column": "FullName",
+        "source_data_format": "String"
+    },
+    {
+        "template_column": "Plan",
+        "template_data_format": "String",
+        "source_column": "Insurance_Plan",
+        "source_data_format": "String"
+    },
+    {
+        "template_column": "PolicyNumber",
+        "template_data_format": "String",
+        "source_column": "Policy_No",
+        "source_data_format": "String"
+    },
+    {
+        "template_column": "Premium",
+        "template_data_format": "Integer",
+        "source_column": "Monthly_Premium",
+        "source_data_format": "Float"
+    }
+]
+}
