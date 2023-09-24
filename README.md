@@ -2,7 +2,7 @@
 In this project I solved this task: https://docs.google.com/document/d/1MB9iSncgF46COGFOGsnwAHb1mexS2y-FVHeIequ9wOE/edit
 
 The script convert_table.py in src uses OpenAI API.
-This script takes a template table template.csv and a source data (table_A.csv or table_B.csv) and a target table name in the format:
+This script takes a template table (template.csv) and a source data (table_A.csv or table_B.csv) and a target table name in the format:
 convert_table.py —-source "source CSV" —-template "template CSV" —-target "target CSV"
 
 As the output, the user receives the target table (for example, target.csv in data) in the Template format (columns, value formats) but with values from the source table.
