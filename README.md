@@ -1,5 +1,5 @@
 # testWebAutomato
-Task: https://docs.google.com/document/d/1MB9iSncgF46COGFOGsnwAHb1mexS2y-FVHeIequ9wOE/edit
+In this project I solved this task: https://docs.google.com/document/d/1MB9iSncgF46COGFOGsnwAHb1mexS2y-FVHeIequ9wOE/edit
 
 The script convert_table.py in src uses OpenAI API.
 This script takes a template table and a source data table (A or B) and a target table name in the format:
