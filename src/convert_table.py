@@ -85,7 +85,7 @@ def map_source_data_to_template_format(template, source, mapping_file, target):
     df_source_need.to_csv(target)
 
 def match_csv_file_columns_with_levenstain_dist(template, source):
-    column_mapping = template.replace(".txt", "") + "_" + source.replace(".txt", "") + "_ratio.csv"
+    column_mapping = template.replace(".csv", "") + "_" + source.replace(".csv", "") + "_ratio.csv"
 
     with open(column_mapping, 'w') as mapping_file:
         mapping_file.write("template;source;ratio"+"\n")
@@ -118,7 +118,7 @@ def find_embeddings(template_read, source_read):
     return template_dict, source_dict
 
 def match_csv_file_columns_with_cosine_sim(template, source):
-    column_mapping = template.replace(".txt", "") + "_" + source.replace(".txt", "") + "_cos_sim.csv"
+    column_mapping = template.replace(".csv", "") + "_" + source.replace(".csv", "") + "_cos_sim.csv"
 
     with open(column_mapping, 'w') as mapping_file:
         mapping_file.write("template;source;cos_sim" + "\n")
