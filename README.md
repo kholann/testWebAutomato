@@ -5,7 +5,7 @@ The script convert_table.py in src uses OpenAI API.
 This script takes a template table (template.csv) and a source data (table_A.csv or table_B.csv) and a target table name in the format:
 convert_table.py —-source "source CSV" —-template "template CSV" —-target "target CSV"
 
-As the output, the user receives the target table (for example, target.csv in data) in the Template format (columns, value formats) but with values from the source table.
+As the output, the user receives the target table (for example, target_A.csv or target_B.csv in data) in the Template format (columns, value formats) but with values from the source table.
 
 Implementation notes:
 1) I don't automatically generate data mapping code for each column display in the final Template format but use own function;
