@@ -47,35 +47,22 @@ def map_source_data_to_template_format(template, source, mapping_file, target):
                             template_dict_list.append(data[j])
 
     df_source_need = pd.DataFrame()
-
-    #TODO: need work with mapping types and formats in prompt
-    type_format_map = {}
-    type_format_map['integer'] = 'int'
-    type_format_map['string'] = 'str'
-
-    date_format_map = {}
-    date_format_map['dd-mm-yyyy'] = '%d-%m-%Y'
-    date_format_map['mm/dd/yyyy'] = '%m/%d/%Y'
-    date_format_map['yyyy-mm-dd'] = '%Y-%m-%d'
-
+    
     for i in range(0, len(template_dict_list)):
         df_source_need[[template_dict_list[i]['template_column']]] = df_source[[template_dict_list[i]['source_column']]]
-        template_data_format = str(template_dict_list[i]['template_data_format']).strip().lower()
-        source_data_format = str(template_dict_list[i]['source_data_format']).strip().lower()
+        template_data_format = str(template_dict_list[i]['template_data_format']).strip()
+        source_data_format = str(template_dict_list[i]['source_data_format']).strip()
         template_column = template_dict_list[i]['template_column']
         source_column = template_dict_list[i]['source_column']
 
         if (template_data_format != source_data_format):
-            if find_name_column_in_dict_data(date_format_map, template_data_format):
-                if find_name_column_in_dict_data(date_format_map, source_data_format):
-                    df_source_need[template_column] = pd.to_datetime(df_source[source_column], format=date_format_map[source_data_format])
-                    df_source_need[template_column] = df_source_need[template_column].apply(lambda x: x.strftime(date_format_map[template_data_format]))
             try:
-                map_format = type_format_map[template_data_format]
-                df_source_need[[template_column]].astype(map_format)
+                df_source_need[template_column] = pd.to_datetime(df_source[source_column], format=source_data_format)
+                df_source_need[template_column] = df_source_need[template_column].apply(lambda x: x.strftime(template_data_format))
+                df_source_need[[template_column]].astype(template_data_format)
             except:
-                print(f'No format {template_data_format} or {source_data_format}.')
-
+                pass
+            
     numb_rows_target = df_source_need.shape[0]
     if (numb_rows_source == numb_rows_target):
         print(f'All data from {source} has been transferred correctly to {target}.')
@@ -157,16 +144,20 @@ def match_csv_file_columns_with_prompt(template, source):
 
     response = openai.ChatCompletion.create(
         model='gpt-4',
-        messages=[{"role":"user", "content": f"given following column names from the template set {template_data} find most similar column names out of the source set {source_data} "
-                                             f"in case of ambiguous mapping, choose the first option "
+        messages=[{"role":"user", "content":
+             f"given following column names from the template set {template_data} find most similar column names out of the source set {source_data} "
+                                              f"in case of ambiguous mapping, choose the first option "
                                              f"find for chosen column names from the template set {template_data} values from {template_data.values()} by keys = column name "
-                                             #TODO: return in python format
-                                             f"and define the data format for the found values "
+                                             f"and define the data format for the found values, "
+                                             f"for date format use format like '%d-%m-%Y' "
+                                             f"for integer format use int format, for string format use str format "
                                              f"find for chosen column names from the source set {source_data} values from {source_data.values()} by keys = column name "
-                                             #TODO: return in python format
-                                             f"and define the data format for the found values "
+                                             f"and define the data format for the found values, "
+                                             f"for date format use format like '%d-%m-%Y' "
+                                             f"for integer format use int format, for string format use str format "
                                              f"struct json for chosen column names and data format with structure: template_column: name of tempate column, template_data_format: data format of template column, source_column: name of source column, source_data_format: data format of source column. "
-                                             f"Don't make any hints, give me result as json only"}
+                                             f"Don't make any hints, give me result as json only"
+                   }
         ]
         )
     content = response['choices'][0].message.content
